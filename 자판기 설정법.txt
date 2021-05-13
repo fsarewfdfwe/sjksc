@@ -1,0 +1,40 @@
+lib 폴더 들어가면 지금 set이라는 파일 여시고
+그러면 
+{
+	"adminid": "총괄id",
+	"prefix": "!",
+	"status": "친절한 자판기",
+	"Token": "봇토큰",
+	"maxmoney": "100000",
+	"minmoney": "5000",
+	"setmoney": "1000"
+}
+이런 파일이 나오죠?
+adminid 는 총괄 id넣고
+token에는 봇 토큰 넣고
+maxmoney
+minmoney
+setmoney
+이 세개는 차례대로 최대 충전 금액, 최소 충전 금액, 충전 금액 단위
+
+!제품추가 제품명:가격 - 랜계 추가할려면 !제품추가 랜계:10000 이런식으로
+!제품삭제 제품명 - 제품 삭제
+!재고추가 제품명 랜계1 랜계2 랜계3 - 재고 추가임
+!재고삭제 제품명 랜계1 - 1개만 삭제 가능합니다
+!제품수정 제품명 가격 바뀔가격 - 예를 들어 10만원에서 29만원으로 하고 싶으면 !제품수정 제품명 가격 290000 이런식으로
+
+두번째
+index.js 그걸 건드려야하는데
+setInterval(function() {
+            if(ss == 0){     
+            client.user.setActivity("상태메시지 하고싶은거                                                                                ", { url: 'https://www.twitch.tv/yosamonov1', type: 'STREAMING' });
+            ss = ss + 1;
+            }else{
+                const xizy = client.users.cache.array().find(m => m.id === "총괄id")
+                const xizy_tag = xizy.username + "#" + xizy.discriminator
+                client.user.setActivity('충전문의 : '+xizy_tag+'                                                                                 ', { url: 'https://www.twitch.tv/yosamonov1', type: 'STREAMING' });
+            ss = ss - 1;
+            }
+이쪽으로 가서 총괄id 저기 붙히고
+상메 하고싶은걸로 바꾸면됨
+그리고 다른설정은 줍줍이가 아니면 다할수있는거라서 안적음
